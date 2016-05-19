@@ -15,7 +15,7 @@ import java.net.URL;
 import javax.swing.JOptionPane;
 
 
- /**
+                        /**
                          * 
                          * Esta es la clase main, que contiene un objeto del que se llaman a los métodos y un switch a modo de menú
                          * 

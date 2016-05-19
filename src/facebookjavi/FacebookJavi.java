@@ -14,6 +14,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.JOptionPane;
 
+
+ /**
+                         * 
+                         * Esta es la clase main, que contiene un objeto del que se llaman a los métodos y un switch a modo de menú
+                         * 
+                         * 
+                         **/ 
 public class FacebookJavi {
 
     public static void main(String[] args) throws FacebookException, MalformedURLException {

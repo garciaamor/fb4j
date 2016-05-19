@@ -10,29 +10,43 @@ import facebook4j.User;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.JOptionPane;
-
+ /**
+                         * 
+                         * Esta clase contiene todos los métodos usados en el switch de la clase principal, para solo necesitar llamarlo
+                         * 
+                         **/ 
 public class Metodos {
     Facebook facebook = new FacebookFactory().getInstance();
                    
-    
+                        /**
+                         * 
+                         * 
+                         * Este método nos indica el usuario conectado, en base a los tokens.
+                         **/   
     public void mostrarUsuario() throws FacebookException{
-                                 
-                    //OBTENER USUARIO
-                    //Nos indica el usuario actual
+                              
                     User user = facebook.getMe();
                     JOptionPane.showMessageDialog(null, "Estas conectado como : "+user.getName());
 }
-                    
+                    /**
+                         * 
+                         * Este método cambia el estado de facebook, es decir, dejar un mensaje en nuestro muro
+                         * 
+                         **/  
     public void publicarEstado() throws FacebookException{
-                    //PUBLICAR UN ESTADO
-                    //Escribe un nuevo estado de facebook
+                    
                     String publi = JOptionPane.showInputDialog("Introduce el estado que quieres publicar"); 
                     facebook.postStatusMessage(publi);
                     JOptionPane.showMessageDialog(null," Post publicado");
     }
+    
+                          /**
+                         * 
+                         * Este método permite postear un link, y nos deja elegir la foto que saldrá en el post, ademas de una descripción
+                         * 
+                         **/ 
     public void postLink() throws MalformedURLException, FacebookException{
-                    //PUBLICAR UN LINK
-                    //Publica un link e indica la foto que saldra en el post
+                    
                     PostUpdate post = new PostUpdate(new URL("http://www.celtavigo.net/es/"))
                     .picture(new URL("http://www.celtavigo.net/images/Plantilla1516/06%20radoja.jpg"))
                     .name("Nemanja Radoja")
@@ -41,27 +55,39 @@ public class Metodos {
                     facebook.postFeed(post);
                     JOptionPane.showMessageDialog(null," Imagen publicada ");
     }
+    
+     /**
+                         * 
+                         * Este método marca como me gusta un post, indicandole el ID
+                         * 
+                         **/ 
     public void likePost() throws FacebookException{
-                    //DARLE LIKE A UN POST PONIENDO EL ID
-                    //A partir del ID de un post, se le da a me gusta automaticamente
+                    
                     String postid=JOptionPane.showInputDialog("Introduce el ID del post");
                     //Ejemplo = 132123553865349
                     facebook.likePost(postid);
                     JOptionPane.showMessageDialog(null,"Le has dado Like a la publicación indicada");
     }
-    
+     /**
+                         * 
+                         * Este método permite escribir un comentario en un post, indicandole el ID de dicho post
+                         * 
+                         **/ 
     public void comentEstado() throws FacebookException{
-                    //COMENTAR UN ESTADO
-                    //A partir del ID de un post, escribir un comentario para dicho post
+                    
                     String postid2=JOptionPane.showInputDialog("Introduce el ID del post");
                     String msg=JOptionPane.showInputDialog("Introduce el comentario");
                     facebook.commentPost(postid2,msg);
                     JOptionPane.showMessageDialog(null,"Has comentado el estado");
     
     }
+     /**
+                         * 
+                         * Este método nos muestra por pantalla todos los comentarios de una foto a partir del ID de la foto
+                         * 
+                         **/ 
     public void obtenerComentFoto() throws FacebookException{
-                    //OBTENER COMENTARIOS DE UNA FOTO
-                    //Poniendo el ID de una foto, nos facilita todos los comentarios de esa foto
+                    
                     //EJEMPLO ID = 132154627195575
                     
                     String fotoid = JOptionPane.showInputDialog("Introduce el Id de la foto");
@@ -72,7 +98,11 @@ public class Metodos {
                     JOptionPane.showMessageDialog(null,"Los comentarios de esta foto estan por pantalla");
     
     }
-    
+     /**
+                         * 
+                         * Este método nos indica ciertos datos, dependiendo de lo indicado en la configuración, del usuario que indiquemos el nombre
+                         * 
+                         **/ 
     public void buscarUsuario() throws FacebookException{
                      //BUSCAR USUARIOS
                     //Indicando un nombre, nos da el usuario y algunos de sus datos; recomendado ser lo mas concreto posible

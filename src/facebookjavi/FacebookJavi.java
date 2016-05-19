@@ -37,9 +37,7 @@ opcion = Integer.parseInt(JOptionPane.showInputDialog("Elija una accion:\n1. Ver
 switch (opcion) {
                 case 1:
                     //OBTENER USUARIO
-                    /**
-                     * Indica el nombre del usuario actual
-                     */
+                    //Nos indica el usuario actual
                     User user = facebook.getMe();
                     JOptionPane.showMessageDialog(null, "Estas conectado como : "+user.getName());
                     break;

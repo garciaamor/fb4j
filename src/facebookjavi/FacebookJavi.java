@@ -26,9 +26,7 @@ FacebookFactory ff = new FacebookFactory(cb.build());
 Facebook facebook = ff.getInstance(); 
       
 
-/*String shortLivedToken = "EAACEdEose0cBAE4ZBWHbdLvWi84rTd9ikKg32ZAVe8qgf51I4B0xjNamvOCKZB5FaiURGHpUVX6VIkVrG8ZAjgYUL9MZBLlXGpQDB6TmKueXYafeKTBopmNqQO1IgkndvEfEAZBGKt5njxKVm9ZBUiDuWyb1VM0dlEo8ZAW1uf0ygCxjyrBYeVI2";
-AccessToken extendedToken = facebook.extendTokenExpiration(shortLivedToken); */
-
+Metodos export = new Metodos();
 
 int opcion=0;
 do{
@@ -36,66 +34,25 @@ opcion = Integer.parseInt(JOptionPane.showInputDialog("Elija una accion:\n1. Ver
 
 switch (opcion) {
                 case 1:
-                    //OBTENER USUARIO
-                    //Nos indica el usuario actual
-                    User user = facebook.getMe();
-                    JOptionPane.showMessageDialog(null, "Estas conectado como : "+user.getName());
+                    export.mostrarUsuario();
                     break;
                 case 2:
-                    //PUBLICAR UN ESTADO
-                    //Escribe un nuevo estado de facebook
-                    String publi = JOptionPane.showInputDialog("Introduce el estado que quieres publicar"); 
-                    facebook.postStatusMessage(publi);
-                    JOptionPane.showMessageDialog(null," Post publicado");
+                    export.publicarEstado();
                     break;
                 case 3:
-                    //PUBLICAR UN LINK
-                    //Publica un link e indica la foto que saldra en el post
-                    PostUpdate post = new PostUpdate(new URL("http://www.celtavigo.net/es/"))
-                    .picture(new URL("http://www.celtavigo.net/images/Plantilla1516/06%20radoja.jpg"))
-                    .name("Nemanja Radoja")
-                    .caption("celtavigo.net")
-                    .description("Nemanja Radoja, mediocentro serbio que juega en el Celta de Vigo, prueba switch 2");
-                    facebook.postFeed(post);
-                    JOptionPane.showMessageDialog(null," Imagen publicada ");
+                    export.postLink();
                     break;
                 case 4:
-                    //DARLE LIKE A UN POST PONIENDO EL ID
-                    //A partir del ID de un post, se le da a me gusta automaticamente
-                    String postid=JOptionPane.showInputDialog("Introduce el ID del post");
-                    //Ejemplo = 132123553865349
-                    facebook.likePost(postid);
-                    JOptionPane.showMessageDialog(null,"Le has dado Like a la publicación indicada");
+                    export.likePost();
                     break;
                 case 5:
-                    //COMENTAR UN ESTADO
-                    //A partir del ID de un post, escribir un comentario para dicho post
-                    String postid2=JOptionPane.showInputDialog("Introduce el ID del post");
-                    String msg=JOptionPane.showInputDialog("Introduce el comentario");
-                    facebook.commentPost(postid2,msg);
-                    JOptionPane.showMessageDialog(null,"Has comentado el estado");
+                    export.comentEstado();
                     break;
                 case 6:
-                    //OBTENER COMENTARIOS DE UNA FOTO
-                    //Poniendo el ID de una foto, nos facilita todos los comentarios de esa foto
-                    //EJEMPLO ID = 132154627195575
-                    
-                    String fotoid = JOptionPane.showInputDialog("Introduce el Id de la foto");
-                    ResponseList<Comment> comentarios = facebook.getPhotoComments(fotoid);
-                    for (int i = 0; i < comentarios.size(); i++) {
-                        System.out.println(comentarios.get(i).getMessage());
-                    }
-                    JOptionPane.showMessageDialog(null,"Los comentarios de esta foto estan por pantalla");
+                    export.obtenerComentFoto();
                     break;
                 case 7:
-                    //BUSCAR USUARIOS
-                    //Indicando un nombre, nos da el usuario y algunos de sus datos; recomendado ser lo mas concreto posible
-                    String ac ="";
-                    String usuar = JOptionPane.showInputDialog("Introduce nombre a buscar");
-                    ResponseList<User> results = facebook.searchUsers(usuar);
-                    for (int i = 0; i < results.size(); i++) {
-                        ac=ac + (results.get(i).getName());
-                    }
+                    export.buscarUsuario();
                 case 8:
                     //Salir de la aplicacion
                     System.exit(0);
